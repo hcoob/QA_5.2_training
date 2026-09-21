@@ -1,0 +1,1 @@
+# QA_5.2_training
