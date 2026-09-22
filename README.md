@@ -1,3 +1,3 @@
 # QA_5.2_training
 
-This is a test readme
+This is a test readme file.
