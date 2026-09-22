@@ -11,12 +11,15 @@ def read_data(path):
 
 
 
-#replace NaN cells
-def fill_na(df):
-    return df.fillna("missing_value")
+# #replace NaN cells
+# def fill_na(df):
+#     return df.fillna("missing_value")
 
 
-
+#remove NaN cells
+def remove_na(df):
+    return df.dropna(how="any")
+    
 #fix datatypes
 def remove_characters(df, column):
     df[column] = df[column].astype("string").str.replace('"', '').str.strip()
@@ -27,11 +30,6 @@ def convert_string_to_date(df, column):
     df[column] = pd.to_datetime(df[column], errors="coerce", dayfirst=True)
     return df
 
-
-#remove NaN cells
-def remove_na(df):
-    return df.dropna(how="any")
-    
 
 
 def find_days_df(df, column_one, column_two):
@@ -50,6 +48,9 @@ def drop_duplicates(df, column):
 
 
 books = read_data("data/library.csv")
+print(books)
+
+books = remove_na(books)
 books = remove_characters(books, "Book checkout")
 books = convert_string_to_date(books, "Book checkout")
 books = convert_string_to_date(books, "Book Returned")

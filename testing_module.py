@@ -4,30 +4,25 @@ import pandas as pd
 
 
 
-from cleaning_module_exc import fill_na, remove_characters, convert_string_to_date, drop_duplicates
+from cleaning_module_exc import remove_na, remove_characters, convert_string_to_date, drop_duplicates
 
 # @pytest.fixture
 
-def test_remove_na():
-    input_df = pd.DataFrame({
-        'ID': [1,2,3],
-        'Books': ['One_book', 'Two_books', 'Three_books'],
-        'Author': ['Author_1', 'Author_2', 'Author_3']
-    })
 
+def test_remove_na():
+    input_df = pd.read_csv("data/library.csv")
     count_before = len(input_df)
-    res = fill_na(input_df)
+    res = remove_na(input_df)
     count_after = len(res)
 
     # self.assertEqual(count_after, count_before )
-    assert count_before == count_after
+    assert count_before > count_after
 
 
 try:
     test_remove_na()
 except AssertionError as e:
     print(e.message)
-
 
 
 # test data in the wrong format
