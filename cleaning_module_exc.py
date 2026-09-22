@@ -8,16 +8,13 @@ def read_data(path):
     df = pd.read_csv(path)
     return df
 
-books = read_data("data/library.csv")
-customers = read_data("data/library_customers.csv")
+
 
 
 #replace NaN cells
 def fill_na(df):
     return df.fillna("missing_value")
 
-books = fill_na(books)
-customers = fill_na(customers)
 
 
 #fix datatypes
@@ -36,10 +33,6 @@ def remove_na(df):
     return df.dropna(how="any")
     
 
-books = remove_characters(books, "Book checkout")
-books = convert_string_to_date(books, "Book checkout")
-books = convert_string_to_date(books, "Book Returned")
-books = remove_na(books)
 
 def find_days_df(df, column_one, column_two):
     df["days diff"] = books[column_one] - books[column_two]
@@ -48,15 +41,19 @@ def find_days_df(df, column_one, column_two):
     #     df["valid_flag"] = 1 
     return df
 
+books = read_data("data/library.csv")
+books = fill_na(books)
+books = remove_characters(books, "Book checkout")
+books = convert_string_to_date(books, "Book checkout")
+books = convert_string_to_date(books, "Book Returned")
+books = remove_na(books)
+books =  find_days_df(books,"Book Returned", "Book checkout" )  
 
-books =   find_days_df(books,"Book Returned", "Book checkout" )  
-
-
+print(books)
 
 
 #clear duplicates
 
-# def remove_duplciate(df):
 
 clean_books = books.drop_duplicates()
 print(books.duplicated().sum())
