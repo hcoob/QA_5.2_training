@@ -13,15 +13,14 @@ new_books = books.fillna("missing_value")
 dropna_books = books.dropna(how="any")
 
 #fix datatypes
-books["Book checkout"] = pd.to_datetime(books["Book checkout"], errors="coerce", dayfirst=True)
+books["New Book checkout"] = pd.to_datetime(books["Book checkout"], errors="coerce", dayfirst=True)
 print(books.dtypes)
-print(books)
 
 #fix incorrectly inputted data
 # new_book_checkout = pd.to_datetime(books["Book checkout"], errors="coerce", dayfirst=True)
 
 #clear duplicates
 clean_books = books.drop_duplicates()
-# print(clean_books)
+print(clean_books)
 
 
