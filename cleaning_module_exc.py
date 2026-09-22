@@ -35,24 +35,25 @@ def remove_na(df):
 
 
 def find_days_df(df, column_one, column_two):
-    df["days diff"] = books[column_one] - books[column_two]
-    books["days diff"] = books["days diff"].dt.days
+    df["days diff"] = df[column_one] - books[column_two]
+    df["days diff"] = df["days diff"].dt.days
 
     return df
 
 books = read_data("data/library.csv")
-books = fill_na(books)
 books = remove_characters(books, "Book checkout")
 books = convert_string_to_date(books, "Book checkout")
 books = convert_string_to_date(books, "Book Returned")
 books = remove_na(books)
-books =  find_days_df(books,"Book Returned", "Book checkout" )  
+books = find_days_df(books,"Book Returned", "Book checkout" )  
 
 
 
-print(books.dtypes)
+print(books)
 
 #clear duplicates
+
+
 
 
 clean_books = books.drop_duplicates()
