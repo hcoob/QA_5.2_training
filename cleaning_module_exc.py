@@ -36,9 +36,8 @@ def remove_na(df):
 
 def find_days_df(df, column_one, column_two):
     df["days diff"] = books[column_one] - books[column_two]
+    books["days diff"] = books["days diff"].dt.days
 
-    # if df["dayd diff"] > 14 or df["dayd diff"] < 0:
-    #     df["valid_flag"] = 1 
     return df
 
 books = read_data("data/library.csv")
@@ -49,8 +48,9 @@ books = convert_string_to_date(books, "Book Returned")
 books = remove_na(books)
 books =  find_days_df(books,"Book Returned", "Book checkout" )  
 
-print(books)
 
+
+print(books.dtypes)
 
 #clear duplicates
 
