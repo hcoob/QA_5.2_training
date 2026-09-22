@@ -1,26 +1,65 @@
 import pandas as pd
+import datetime as dt
 
 # pd.set_option("display.width", 200)
 # pd.set_option("display.max_columns", 20)
 
-books = pd.read_csv("data/library.csv")
-# print(books)
+def read_data(path):
+    df = pd.read_csv(path)
+    return df
+
+books = read_data("data/library.csv")
+customers = read_data("data/library_customers.csv")
+
 
 #replace NaN cells
-new_books = books.fillna("missing_value")
+def fill_na(df):
+    return df.fillna("missing_value")
 
-#remove NaN cells
-dropna_books = books.dropna(how="any")
+books = fill_na(books)
+customers = fill_na(customers)
+
 
 #fix datatypes
-books["New Book checkout"] = pd.to_datetime(books["Book checkout"], errors="coerce", dayfirst=True)
-print(books.dtypes)
+def remove_characters(df, column):
+    df[column] = df[column].astype("string").str.replace('"', '').str.strip()
+    return df
 
-#fix incorrectly inputted data
-# new_book_checkout = pd.to_datetime(books["Book checkout"], errors="coerce", dayfirst=True)
+
+def convert_string_to_date(df, column):
+    df[column] = pd.to_datetime(df[column], errors="coerce", dayfirst=True)
+    return df
+
+
+#remove NaN cells
+def remove_na(df):
+    return df.dropna(how="any")
+    
+
+books = remove_characters(books, "Book checkout")
+books = convert_string_to_date(books, "Book checkout")
+books = convert_string_to_date(books, "Book Returned")
+books = remove_na(books)
+
+def find_days_df(df, column_one, column_two):
+    df["days diff"] = books[column_one] - books[column_two]
+
+    # if df["dayd diff"] > 14 or df["dayd diff"] < 0:
+    #     df["valid_flag"] = 1 
+    return df
+
+
+books =   find_days_df(books,"Book Returned", "Book checkout" )  
+
+
+
 
 #clear duplicates
+
+# def remove_duplciate(df):
+
 clean_books = books.drop_duplicates()
-print(clean_books)
+print(books.duplicated().sum())
+
 
 
