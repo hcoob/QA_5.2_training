@@ -40,25 +40,22 @@ def find_days_df(df, column_one, column_two):
 
     return df
 
+
+#clear duplicates
+
+def drop_duplicates(df, column):
+
+    df = df.drop_duplicates(subset=column)
+    return (df)
+
+
 books = read_data("data/library.csv")
 books = remove_characters(books, "Book checkout")
 books = convert_string_to_date(books, "Book checkout")
 books = convert_string_to_date(books, "Book Returned")
 books = remove_na(books)
 books = find_days_df(books,"Book Returned", "Book checkout" )  
-
-
-
-print(books)
-
-#clear duplicates
-
-# def drop_duplicates(df):
-
-
-
-clean_books = books.drop_duplicates()
-print(books.duplicated().sum())
+books = drop_duplicates(books, 'Books')
 
 def save_to_csv(df, path, file_name):
     df.to_csv(f"{path}/{file_name}.csv")
