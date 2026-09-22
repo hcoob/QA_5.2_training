@@ -59,5 +59,14 @@ print(books)
 clean_books = books.drop_duplicates()
 print(books.duplicated().sum())
 
+def save_to_csv(df, path, file_name):
+    df.to_csv(f"{path}/{file_name}.csv")
+    return 
+
+
+save_to_csv(books, 'data', 'output_file')
+
+
+
 
 
