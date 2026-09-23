@@ -4,7 +4,7 @@ import pandas as pd
 
 
 
-from cleaning_module_exc import remove_na, remove_characters, convert_string_to_date, drop_duplicates
+from cleaning_module_exc import remove_na, remove_characters, convert_string_to_date, drop_duplicates, find_days_df
 
 # @pytest.fixture
 
@@ -59,10 +59,26 @@ def test_drop_duplicates():
     assert count_1 > count_2
 
 
-
 try: 
     test_drop_duplicates()
 except AssertionError as e:
     print(e.message)
 
+#this is not working
+def test_find_days_df():
+    input_df = pd.DataFrame({
+        'Date_1': ['2023-02-20'],
+        'Date_2': ['2023-02-21']
+    })
+
+    input_df['Date_1'] = pd.to_datetime(input_df['Date_1'])
+    input_df['Date_2'] = pd.to_datetime(input_df['Date_2'])
+    output_df = find_days_df(input_df, 'Date_2', 'Date_1')
+    assert output_df['diff'] == [1]
+
+
+try: 
+    test_find_days_df()
+except AssertionError as e:
+    print(e.message)
 
