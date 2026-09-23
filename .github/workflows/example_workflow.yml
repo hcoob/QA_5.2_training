@@ -42,6 +42,8 @@ jobs:
       - name: Install dependencies
         run: |
           pip install -r pipeline/requirements.txt
+      - name: Run Pytest
+        run: pytest testing_module.py
             
           
     
