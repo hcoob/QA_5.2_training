@@ -33,17 +33,17 @@ jobs:
         run: 
           echo Add other actions to build
           echo test, and deploy your project
-    steps:
-    - uses: actions/setup-python@v5
-    - name: Set up Python
-      uses: actions/setup-python@v5
-      with:
-        python-version: '3.14'
-    - name: Install dependencies
-      run: |
-        pip install -r pipeline/requirements.txt
+
+      - uses: actions/setup-python@v5
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.14'
+      - name: Install dependencies
+        run: |
+          pip install -r pipeline/requirements.txt
+            
           
-        
     
 
       
