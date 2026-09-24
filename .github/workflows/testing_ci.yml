@@ -44,11 +44,11 @@ jobs:
       - name: Checkout repo
         uses: actions/checkout@v4
 
-      - name: create image
+      - name: Create Image
         run: |
           docker build \
-            --file docker/dockerfile \
-            --tag $IMAGE_NAME:${{ github.sha}} \ 
+            --file docker/Dockerfile \
+            --tag $IMAGE_NAME:${{ github.sha }} \
             .
 
       - name: run docker image
