@@ -1,3 +1,7 @@
 # QA_5.2_training
 
-This is a test readme file.
+The pipeline automates the extraction and transformation of library data. The pipeline uses Python to:
+removed duplicate data
+flag incorrect data
+correct date format
+
