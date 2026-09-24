@@ -2,9 +2,9 @@ FROM python:3.14-slim
 
 WORKDIR /app
 
-COPY pipeline/requirements.txt .
+COPY requirements.txt .
 
-RUN python -m pip install --no-cache-dir -r pipeline/requirements.txt
+RUN python -m pip install --no-cache-dir -r requirements.txt
 COPY . . 
 
 CMD ['python', 'cleaning_module_exc.py']
