@@ -1,6 +1,5 @@
-# QA_5.2_training
-
-The pipeline automates the extraction and transformation of library data. The pipeline uses Python to:
+# Pipeline
+This project automates the data quality process of library data. The current process requires staff to manually carry out tasks. The pipeline uses Python to:
 - read csv files
 - removed duplicate data
 - flag incorrect data
@@ -20,6 +19,15 @@ The data is visualized in a powerBI dashboard.
 ├── testing_module.py
 ├── README.md
 ├── diagram.png   
+
+# Technology used
+1. Python
+2. Pandas
+3. GitHub
+
+# Data Source
+
+- Input .CSV files
 
 # How to run the pipeline
 ## Install dependencies
