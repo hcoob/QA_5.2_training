@@ -59,7 +59,7 @@ jobs:
 
       - name: Save Docker Image
         run: |
-          docker save $IMAGE_PATH:${{ github.sha }} --output $IMAGE_NAME.tar
+          docker save $IMAGE_NAME:${{ github.sha }} --output $IMAGE_NAME.tar
 
       - name: upload image
         uses: actions/upload-artifact@v7
