@@ -48,13 +48,14 @@ def drop_duplicates(df, column):
 
 
 books = read_data("data/library.csv")
-
+customers = read_data("data/library_customers.csv")
 
 books = remove_na(books)
 books = remove_characters(books, "Book checkout")
 books = convert_string_to_date(books, "Book checkout")
 books = convert_string_to_date(books, "Book Returned")
 books = remove_na(books)
+customers = remove_na(customers)
 books = find_days_df(books,"Book Returned", "Book checkout" )  
 books = drop_duplicates(books, 'Books')
 # print(books)
@@ -63,8 +64,8 @@ def save_to_csv(df, path, file_name):
     df.to_csv(f"{path}/{file_name}.csv")
     return 
 
-
-save_to_csv(books, 'data', 'output_file')
+save_to_csv(books, 'data', 'library_output_file')
+save_to_csv(customers, 'data', 'customers_output_file')
 
 
 
