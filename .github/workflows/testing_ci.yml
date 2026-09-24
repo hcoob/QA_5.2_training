@@ -10,6 +10,9 @@ on:
 
   workflow_dispatch:
 
+env:
+  IMAGE_NAME: library-quality-analysis
+
 jobs:
 
   test: 
