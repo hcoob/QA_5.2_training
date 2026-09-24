@@ -18,7 +18,7 @@ The data is visualized in a powerBI dasboard.
 ├── requirements.txt            
 ├── cleaning_module_exc.py          
 ├── testing_module.py
-├── diagram.png
+├── diagram.png      
 ├── README.ms
 
 # How to run the pipeline
