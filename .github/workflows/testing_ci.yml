@@ -48,7 +48,8 @@ jobs:
         run: |
           docker build \
             -- file docker/Dockerfile \
-            -- tag $IMAGE_NAME:${{ github.sha}} \ .
+            -- tag $IMAGE_NAME:${{ github.sha}} \ 
+            .
 
       - name: run docker image
         run: 
