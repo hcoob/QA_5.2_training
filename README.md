@@ -18,7 +18,6 @@ The data is visualized in a powerBI dashboard.
 ├── cleaning_module_exc.py          
 ├── testing_module.py
 ├── README.md
-├── diagram.png   
 
 # Technology used
 1. Python
