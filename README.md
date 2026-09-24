@@ -30,10 +30,6 @@ pip install -r requirements.txt
 
 python cleaning_module_exc.py 
 
-# Testing
-
-Testing is automatically carried out through pytest and GitHub actions when code is pushed to the repository.
-
 ## How the script works
 
 1. read_data(path): reads the csv filed and returns a dataframe
@@ -43,6 +39,10 @@ Testing is automatically carried out through pytest and GitHub actions when code
 5. find_days_df(df, column_one, column_two): creates a new column that stores the difference between two dates
 6. drop_duplicates(df, column): removes duplicate rows
 7. save_to_csv(df, path, file_name): outpus the clean data into a new .csv file
+
+# Testing
+
+Testing is automatically carried out through pytest and GitHub actions when code is pushed to the repository.
 
 # Data visualisation
 
