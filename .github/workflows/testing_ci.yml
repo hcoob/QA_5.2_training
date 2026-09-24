@@ -1,0 +1,75 @@
+
+name: EG Job
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+
+  workflow_dispatch:
+
+jobs:
+
+  test: 
+    name: Run Python tests
+    runs-on: ubuntu-latest
+
+    steps:
+
+     - name: Checkout repo
+       uses: actions/checkout@v7
+
+     - name: Set up Python
+       uses: actions/setup-python@v5
+       with:
+          python-version: '3.14'
+     - name: Install dependencies
+       run: |
+        pip install -r pipeline/requirements.txt
+     - name: Run Pytest
+       run: pytest testing_module.py
+
+    build:
+
+      name: Build docker image
+      needs: test
+      runs-on: ubuntu-latest
+
+      steps:
+        - name: Checkout repo
+          uses: action/checkout@v7
+
+        - name: create image
+          run: |
+            docker build \
+             -- file docker/Dockerfile \
+             -- tag $IMAGE_NAME:${{ github.sha}} \ .
+
+        - name: run docker image
+          run: 
+            docker run --rm \ $IMAGE_NAME:${{ github.sha}} 
+
+                
+        - name: save image
+          run: 
+            docker save \ $IMAGE_NAME:${{ github.sha}} \
+            -- ouput $IMAGE_NAME.tar
+
+        - name: upload image
+          uses: actions/upload-artifact@v7
+          with:
+            name: ${{ env.IMAGE_NAME }}-${{ github.sha }}
+            path: ${{ env.IMAGE_NAME }}.tar
+            if-no-files-found: error
+
+
+
+
+
+    
+
+      
+    
+
