@@ -44,3 +44,10 @@ Testing is automatically carried out through pytest and GitHub actions when code
 6. drop_duplicates(df, column): removes duplicate rows
 7. save_to_csv(df, path, file_name): outpus the clean data into a new .csv file
 
+# Data visualisation
+
+The powerBI dashboards shows:
+1. Number of books borrowed per month
+2. Number of books returned each month
+3. Number of books past days allowed
+4. Number of books with incorrect dates
