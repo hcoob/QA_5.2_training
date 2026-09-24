@@ -7,7 +7,7 @@ The pipeline automates the extraction and transformation of library data. The pi
 - correct date format
 - output clean data
 
-The data is visualized in a powerBI dasboard.
+The data is visualized in a powerBI dashboard.
 
 # Repo Structure
 
