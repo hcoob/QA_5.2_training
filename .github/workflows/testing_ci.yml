@@ -1,5 +1,5 @@
 
-name: EG Job
+name: EG docker Job
 
 on:
   push:
