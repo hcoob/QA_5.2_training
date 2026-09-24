@@ -50,10 +50,12 @@ jobs:
             --file docker/dockerfile \
             --tag $IMAGE_NAME:${{ github.sha }} \
             .
+       # Run Docker image
+      - name: Run Docker Image
+        run: |
+          docker run --rm \
+            $IMAGE_NAME:${{ github.sha }}
 
-      - name: run docker image
-        run: 
-          docker run --rm \ $IMAGE_NAME:${{ github.sha}} 
 
                 
       - name: save image
